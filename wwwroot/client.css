@@ -1,0 +1,77 @@
+body {
+    background-color:#eaeaea;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    min-width: 480px;}
+header {
+    margin: 0;
+    padding: 4px;
+    border-top: 2px solid #565656;
+    border-bottom: 2px solid #565656;
+    font-size: 4em;
+    padding-left:125px;
+    height: 100px;
+    font-family: 'Anton', sans-serif;
+    color: #565656;
+}
+header span {
+    text-shadow: 2px 2px 8px #565656;
+}
+#drawing {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    top: -70px;
+    left: -60px;
+    opacity: .25;
+    clip: rect(0px, 260px, 180px, 0px);
+    z-index: -1;
+}
+.grid-header {
+    font-weight: bold;
+    border-bottom: 2px solid #999;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+}
+.grid-container {
+    width: 80%;
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    border-radius: 8px;
+    box-shadow: #565656 1px 1px 6px;
+    font-size: 1.8em;
+
+    display: grid;
+    grid: auto / max-content max-content auto max-content auto max-content;
+}
+.grid-container > div {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+@media only screen and (max-width: 732px) {
+    header {
+        padding-left: 90px;
+        font-size: 3em;
+        height: 74px;
+    }
+    #drawing {
+        top: -50px;
+        left: -40px;
+        width: 200px;
+        height: 200px;
+        clip: rect(0px, 200px, 134px, 0px);
+    }
+    .grid-container {
+        width: 90%;
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+}
