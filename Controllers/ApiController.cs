@@ -36,5 +36,15 @@ namespace WordApi.Controllers
         {
             return _dataContext.Scores.OrderByDescending(s => s.Total).Take(num).ToArray();
         }
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK), ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Post([FromBody] Score score) {
+            if (String.IsNullOrEmpty(score.Name))
+            {
+                return BadRequest();
+            }
+            score.Date = DateTime.UtcNow;
+            return new JsonResult(_dataContext.AddScore(score));
+        } 
     }
 }
