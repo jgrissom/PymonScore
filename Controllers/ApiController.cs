@@ -19,15 +19,15 @@ namespace WordApi.Controllers
             _dataContext = db;
             _logger = logger;
         }
-        [HttpGet, Route("[controller]/game")]
-        public IEnumerable<Game> GetGame()
-        {
-            return _dataContext.Games.OrderBy(g => g.Name).ToArray();
-        }
-        [HttpGet, Route("[controller]/game/{id}")]
-        public Game GetGame(int id)
-        {
-            return _dataContext.Games.FirstOrDefault(g => g.GameId == id);
-        }
+        // [HttpGet, Route("[controller]/game")]
+        // public IEnumerable<Game> GetGame()
+        // {
+        //     return _dataContext.Games.OrderBy(g => g.Name).ToArray();
+        // }
+        // [HttpGet, Route("[controller]/game/{id}")]
+        // public Game GetGame(int id)
+        // {
+        //     return _dataContext.Games.FirstOrDefault(g => g.GameId == id);
+        // }
     }
 }

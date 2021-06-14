@@ -1,11 +1,11 @@
+using System;
 namespace ScoreMaster.Models
 {
     public class Score
     {
-        public int ScoreId { get; set; }
-        public int ScoreTotal { get; set; }
-        public string PlayerName { get; set; }
-        public int GameId { get; set; }
-        public Game Game { get; set; }
+        public int Id { get; set; }
+        public int Total { get; set; }
+        public string Name { get; set; }
+        public DateTime Date { get; set; }
     }
 }
