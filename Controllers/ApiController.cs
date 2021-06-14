@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ScoreMaster.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace WordApi.Controllers
 {
-    [ApiController]
+    [ApiController, Route("[controller]/score")]
     public class ApiController : ControllerBase
     {
         private readonly ILogger<ApiController> _logger;
@@ -19,15 +20,16 @@ namespace WordApi.Controllers
             _dataContext = db;
             _logger = logger;
         }
-        // [HttpGet, Route("[controller]/game")]
-        // public IEnumerable<Game> GetGame()
-        // {
-        //     return _dataContext.Games.OrderBy(g => g.Name).ToArray();
-        // }
-        // [HttpGet, Route("[controller]/game/{id}")]
-        // public Game GetGame(int id)
-        // {
-        //     return _dataContext.Games.FirstOrDefault(g => g.GameId == id);
-        // }
+        [HttpGet]
+        public IEnumerable<Score> Get()
+        {
+            return _dataContext.Scores.OrderByDescending(s => s.Total).Take(10).ToArray();
+        }
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK), ProducesResponseType(StatusCodes.Status204NoContent)]
+        public Score Get(int id)
+        {
+            return _dataContext.Scores.FirstOrDefault(s => s.Id == id);
+        }
     }
 }
