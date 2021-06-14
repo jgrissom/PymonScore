@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace ScoreMaster.Models
@@ -13,6 +14,11 @@ namespace ScoreMaster.Models
             this.Add(score);
             this.SaveChanges();
             return score;
+        }
+        public void DeleteScore(int id)
+        {
+            this.Remove(this.Scores.Find(id));
+            this.SaveChanges();
         }
     }
 }

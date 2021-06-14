@@ -45,6 +45,16 @@ namespace WordApi.Controllers
             }
             score.Date = DateTime.UtcNow;
             return new JsonResult(_dataContext.AddScore(score));
+        }
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent), ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult Delete(int id){
+            Score score = _dataContext.Scores.Find(id);
+            if (score == null){
+                return NotFound();
+            }
+            _dataContext.DeleteScore(id);
+            return NoContent();
         } 
     }
 }
