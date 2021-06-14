@@ -31,5 +31,10 @@ namespace WordApi.Controllers
         {
             return _dataContext.Scores.FirstOrDefault(s => s.Id == id);
         }
+        [HttpGet("top/{num}"), ApiExplorerSettings(IgnoreApi = true)]
+        public IEnumerable<Score> GetTop(int num)
+        {
+            return _dataContext.Scores.OrderByDescending(s => s.Total).Take(num).ToArray();
+        }
     }
 }
