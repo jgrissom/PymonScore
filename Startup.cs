@@ -32,7 +32,9 @@ namespace ScoreMaster
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ScoreMaster", Version = "v1", Description = "API for saving game high score history" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pymon API", Version = "v1", Description = "API for saving game high score history" });
+                c.EnableAnnotations();
+                c.TagActionsBy(api => new[] { api.HttpMethod });
             });
         }
 
@@ -45,7 +47,7 @@ namespace ScoreMaster
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ScoreMaster v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pymon API v1"));
 
             app.UseHttpsRedirection();
 

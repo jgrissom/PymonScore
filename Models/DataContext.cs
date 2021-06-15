@@ -8,17 +8,5 @@ namespace ScoreMaster.Models
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Score> Scores { get; set; }
-
-        public Score AddScore(Score score)
-        {
-            this.Add(score);
-            this.SaveChanges();
-            return score;
-        }
-        public void DeleteScore(int id)
-        {
-            this.Remove(this.Scores.Find(id));
-            this.SaveChanges();
-        }
     }
 }
