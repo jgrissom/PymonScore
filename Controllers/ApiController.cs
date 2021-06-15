@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ScoreMaster.Models;
-using Microsoft.AspNetCore.Http;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WordApi.Controllers
@@ -62,7 +61,7 @@ namespace WordApi.Controllers
         [HttpDelete("{id}")]
         [SwaggerOperation(summary: "delete score from collection", null)]
         [ProducesResponseType(typeof(Score), 204), SwaggerResponse(204, "No Content")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             var score = await _dataContext.Scores.FindAsync(id);
 
