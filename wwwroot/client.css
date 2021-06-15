@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    min-width: 480px;}
+}
 header {
     margin: 0;
     padding: 4px;
@@ -28,13 +28,7 @@ header span {
     clip: rect(0px, 260px, 180px, 0px);
     z-index: -1;
 }
-.grid-header {
-    font-weight: bold;
-    border-bottom: 2px solid #999;
-    margin-bottom: 4px;
-    padding-bottom: 4px;
-}
-.grid-container {
+.container {
     width: 80%;
     max-width: 1080px;
     margin-left: auto;
@@ -47,31 +41,56 @@ header span {
 
     border-radius: 8px;
     box-shadow: #565656 1px 1px 6px;
-    font-size: 1.8em;
-
-    display: grid;
-    grid: auto / max-content max-content auto max-content auto max-content;
 }
-.grid-container > div {
-    padding-left: 10px;
-    padding-right: 10px;
+
+table {
+    font-size: 1.8em;
+    width:100%;
+    border-collapse: collapse;
+}
+thead tr {
+    border-bottom: 2px solid #565656;
+}
+th  {
+    font-weight:bold;
+    text-align:left;
+}
+tbody th {
+    padding-right:10px;
+    width:18px;
+    text-align:right;
+}
+tbody td, th {
+    padding-top:12px;
+}
+.score {
+    text-align:right;
+    padding-right:10px;
 }
 @media only screen and (max-width: 732px) {
     header {
-        padding-left: 90px;
-        font-size: 3em;
-        height: 74px;
+        padding: 0;
+        padding-left:100px;
+        font-size: 1.4em;
+        height: 25px;
+        border: 0;
+    }
+    header span {
+        text-shadow: 0px 0px;
+        opacity: .9;
     }
     #drawing {
         top: -50px;
         left: -40px;
         width: 200px;
         height: 200px;
-        clip: rect(0px, 200px, 134px, 0px);
+        clip: rect(0px, 200px, 200px, 0px);
     }
-    .grid-container {
+    .container {
         width: 90%;
-        font-size: 1.2em;
-        margin-top: 20px;
+        margin-top: 10px;
+    }
+    table {
+        font-size: 1.1em;
     }
 }

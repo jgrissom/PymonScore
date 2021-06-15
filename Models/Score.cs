@@ -8,16 +8,8 @@ namespace ScoreMaster.Models
         public int Id { get; set; }
         [Required]
         public int Total { get; set; }
-        [Required]
+        [Required, MaxLength(15)]
         public string Name { get; set; }
         public DateTime Date { get; set; }
     }
-
-    // public class NewScore
-    // {
-    //     [Required]
-    //     public int Total { get; set; }
-    //     [Required]
-    //     public string Name { get; set; }
-    // }
 }
