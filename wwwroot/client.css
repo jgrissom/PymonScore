@@ -80,11 +80,7 @@ tbody td, th {
         opacity: .9;
     }
     #drawing {
-        top: -50px;
-        left: -40px;
-        width: 200px;
-        height: 200px;
-        clip: rect(0px, 200px, 200px, 0px);
+        clip: rect(0px, 260px, 260px, 0px);
     }
     .container {
         width: 90%;
