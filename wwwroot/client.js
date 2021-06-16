@@ -1,6 +1,11 @@
 "use strict";
 
 window.onload = function() {
+    // generate table html for leaderboard
+    for (let i = 1; i <= 10; i++) {
+        const tbody = document.getElementById('tbody');
+        tbody.innerHTML += `<tr><th class="rank">${i}.</th><td class="name"></td><td class="date"></td><td class="score"></td></tr>`;
+    }
     getData('api/score/top/10');
 }
 
@@ -9,7 +14,6 @@ function getData(url) {
     fetch(url)
         .then(response => response.json())
         .then(scores => {
-            console.log(scores);
             showTable(scores);
         })
         .catch(error => {
@@ -18,11 +22,24 @@ function getData(url) {
 }
 
 function showTable(scores) {
-    const tbody = document.getElementById('tbody');
-    let rank = 1;
-    scores.forEach(score => {
-        tbody.innerHTML += '<tr data-id=' + score.id + '><th>' + rank++ + '.</th><td>' + score.name + '</td><td>' + formatDate(new Date(score.date)) + '</td><td class="score">' + score.total + '</td></tr>';
-    }); 
+    const rows = document.querySelectorAll('tbody tr');
+    for (let i = 0; i < scores.length; i++){
+        if (scores[i].id != rows[i].id) {
+            rows[i].classList.add('highlight');
+            const cols = rows[i].querySelectorAll('td');
+            cols[0].innerHTML = scores[i].name;
+            cols[1].innerHTML = formatDate(new Date(scores[i].date));
+            cols[2].innerHTML = scores[i].total;
+            rows[i].id = scores[i].id;
+        }        
+    }
+    for (let i = scores.length; i < rows.length; i++){
+        const cols = rows[i].querySelectorAll('td');
+        cols.forEach(col => { col.innerHTML = ""; });
+    }
+    document.querySelectorAll('.highlight').forEach(item => {
+        item.addEventListener('animationend', () => { item.classList.remove('highlight'); });
+    });
 }
 
 function formatDate(date) {
