@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using ScoreMaster.Models;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace WordApi.Controllers
+namespace ScoreMaster.Controllers
 {
     [ApiController, Route("[controller]/score")]
     public class ApiController : ControllerBase
