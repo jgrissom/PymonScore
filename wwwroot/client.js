@@ -49,13 +49,21 @@ connection.start().then(function () {
     console.log('connection started');
 });
 
-// upon receipt of add/delete message, refresh table rows
-connection.on("ReceiveMessage", function (scores) {
+// upon receipt of add message, refresh table rows
+connection.on("ReceiveAddMessage", function (scores) {
     showTable(scores);
     const element = document.getElementById('container');
-    if (element.classList.contains('highlight')) {
-        element.classList.remove('highlight');
-    }
-    element.classList.add('highlight');
-    element.addEventListener('animationend', () => { element.classList.remove('highlight'); });
+    element.classList.add('highlight-add');
+    element.addEventListener('transitionend', () => {
+        element.classList.remove('highlight-add');
+    });
+});
+
+connection.on("ReceiveDeleteMessage", function (scores) {
+    showTable(scores);
+    const element = document.getElementById('container');
+    element.classList.add('highlight-delete');
+    element.addEventListener('transitionend', () => {
+        element.classList.remove('highlight-delete');
+    });
 });

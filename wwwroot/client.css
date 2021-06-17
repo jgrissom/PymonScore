@@ -41,13 +41,20 @@ header {
     box-shadow: #565656 1px 1px 6px;
 
     color: #565656;
+    transition: background-color .7s;
+}
+
+.highlight-add {
+    background-color: rgb(232, 255, 232);
+}
+.highlight-delete {
+    background-color: rgb(255, 222, 222);
 }
 
 table {
     font-size: 1.8em;
     width:100%;
     border-collapse: collapse;
-    color: inherit;
 }
 th {
     color: #000;
@@ -57,8 +64,10 @@ thead tr {
     border-bottom: 2px solid #565656;
     text-align:left;
 }
-
-.highlight {
+/* .x {
+    box-shadow: rgb(49, 138, 255) 3px 3px 12px;
+} */
+/* .highlight {
     animation-duration: 3s;
     animation-name: highlight;
 }
@@ -66,7 +75,7 @@ thead tr {
     0%   { box-shadow: #565656 1px 1px 6px; }
     1% { box-shadow: rgb(49, 138, 255) 3px 3px 12px; }
     70% { box-shadow: rgb(49, 138, 255) 3px 3px 12px; }
-}
+} */
 tbody td {  
     padding:6px;
 }
