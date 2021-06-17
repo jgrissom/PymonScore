@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ScoreMaster.Models;
 using Swashbuckle.AspNetCore.Annotations;
+using Microsoft.AspNetCore.SignalR;
+using ScoreMaster.Hubs;
 
 namespace ScoreMaster.Controllers
 {
@@ -14,11 +16,12 @@ namespace ScoreMaster.Controllers
     {
         private readonly ILogger<ApiController> _logger;
         private DataContext _dataContext;
-
-        public ApiController(ILogger<ApiController> logger, DataContext db)
+        private readonly IHubContext<PymonHub> _hubContext;
+        public ApiController(ILogger<ApiController> logger, DataContext db, IHubContext<PymonHub> hubContext)
         {
             _dataContext = db;
             _logger = logger;
+            _hubContext = hubContext;
         }
 
         [HttpGet]
@@ -54,6 +57,7 @@ namespace ScoreMaster.Controllers
             score.Date = DateTime.UtcNow;
             _dataContext.Add(score);
             await _dataContext.SaveChangesAsync();
+            await _hubContext.Clients.All.SendAsync("ReceiveAddMessage", score.Id);
             this.HttpContext.Response.StatusCode = 201;
             return score;
         }
@@ -72,6 +76,7 @@ namespace ScoreMaster.Controllers
 
             _dataContext.Scores.Remove(score);
             await _dataContext.SaveChangesAsync();
+            await _hubContext.Clients.All.SendAsync("ReceiveDeleteMessage", id);
 
             return NoContent();
         }

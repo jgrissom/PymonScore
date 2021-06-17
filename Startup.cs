@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ScoreMaster.Models;
+using ScoreMaster.Hubs;
 
 namespace ScoreMaster
 {
@@ -30,6 +31,7 @@ namespace ScoreMaster
         {
             services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultSQLiteConnection")));
             services.AddControllers();
+            services.AddSignalR();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pymon API", Version = "v1", Description = "API for saving game high score history" });
@@ -61,6 +63,7 @@ namespace ScoreMaster
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<PymonHub>("/pymonHub");
             });
         }
     }

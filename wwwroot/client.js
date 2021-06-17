@@ -48,3 +48,21 @@ function formatDate(date) {
     const d = date.getDate();
     return y + "." + (m < 10 ? "0" + m : m) + "." + (d < 10 ? "0" + d : d);
 }
+
+//------------------------- signalR -----------------------------------------
+var connection = new signalR.HubConnectionBuilder().withUrl("/pymonHub").build();
+
+// initialize signalR connection
+connection.start().then(function () {
+    console.log('connection started');
+});
+
+// upon receipt of add message, refresh table rows
+connection.on("ReceiveAddMessage", function (id) {
+    getData('api/score/top/10');
+});
+
+// upon receipt of delete message, refresh tables rows
+connection.on("ReceiveDeleteMessage", function (id) {
+    getData('api/score/top/10');
+});
