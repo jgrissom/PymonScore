@@ -26,7 +26,7 @@ header {
     clip: rect(0px, 260px, 180px, 0px);
     z-index: -1;
 }
-.container {
+#container {
     width: 80%;
     max-width: 1080px;
     margin-left: auto;
@@ -51,34 +51,40 @@ thead tr {
     font-weight:bold;
     text-align:left;
 }
-.highlight {
+.highlight-add {
     animation-duration: 3s;
-    animation-name: highlight;
+    animation-name: highlight-add;
 }
-@keyframes highlight {
-    0%   { color: black; }
-    20% { color: red; }
-    80% { color: red; }
+@keyframes highlight-add {
+    0%   { box-shadow: #565656 1px 1px 6px; }
+    20% { box-shadow: rgb(0, 134, 0) 3px 3px 12px; }
+    80% { box-shadow: rgb(0, 134, 0) 3px 3px 12px; }
+}
+.highlight-delete {
+    animation-duration: 3s;
+    animation-name: highlight-delete;
+}
+@keyframes highlight-delete {
+    0%   { box-shadow: #565656 1px 1px 6px; }
+    20% { box-shadow: rgb(208, 0, 0) 3px 3px 12px; }
+    80% { box-shadow: rgb(208, 0, 0) 3px 3px 12px; }
 }
 tbody td {  
     padding:6px;
 }
 .rank {
     text-align:right;
-    min-width:50px;
+    width:50px;
     padding-right:10px;
     font-weight:bold;
 }
-.name {
-    width:100%;
-}
 .date {
-    min-width:160px;
+    width:160px;
 }
 .score {
     text-align:right;
     padding-right:10px;
-    min-width:75px;
+    width:75px;
 }
 @media only screen and (max-width: 732px) {
     header {
@@ -93,7 +99,16 @@ tbody td {
     #drawing {
         clip: rect(0px, 260px, 260px, 0px);
     }
-    .container {
+    .rank {
+        width: 30px;
+    }
+    .date {
+        width: 100px;
+    }
+    .score {
+        width: 50px;
+    }
+    #container {
         width: 90%;
         margin-top: 10px;
     }
