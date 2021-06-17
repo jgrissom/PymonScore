@@ -39,35 +39,33 @@ header {
 
     border-radius: 8px;
     box-shadow: #565656 1px 1px 6px;
+
+    color: #565656;
 }
 
 table {
     font-size: 1.8em;
     width:100%;
     border-collapse: collapse;
+    color: inherit;
 }
+th {
+    color: #000;
+}
+
 thead tr {
     border-bottom: 2px solid #565656;
-    font-weight:bold;
     text-align:left;
 }
-.highlight-add {
+
+.highlight {
     animation-duration: 3s;
-    animation-name: highlight-add;
+    animation-name: highlight;
 }
-@keyframes highlight-add {
+@keyframes highlight {
     0%   { box-shadow: #565656 1px 1px 6px; }
-    1% { box-shadow: rgb(0, 134, 0) 3px 3px 12px; }
-    70% { box-shadow: rgb(0, 134, 0) 3px 3px 12px; }
-}
-.highlight-delete {
-    animation-duration: 3s;
-    animation-name: highlight-delete;
-}
-@keyframes highlight-delete {
-    0%   { box-shadow: #565656 1px 1px 6px; }
-    1% { box-shadow: rgb(208, 0, 0) 3px 3px 12px; }
-    70% { box-shadow: rgb(208, 0, 0) 3px 3px 12px; }
+    1% { box-shadow: rgb(49, 138, 255) 3px 3px 12px; }
+    70% { box-shadow: rgb(49, 138, 255) 3px 3px 12px; }
 }
 tbody td {  
     padding:6px;

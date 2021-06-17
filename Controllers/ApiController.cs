@@ -59,7 +59,7 @@ namespace ScoreMaster.Controllers
             await _dataContext.SaveChangesAsync();
             // only send message if the new score is in the top 10
             if (_dataContext.Scores.OrderByDescending(s => s.Total).Take(10).Any(s => s.Id == score.Id)){
-                await _hubContext.Clients.All.SendAsync("ReceiveAddMessage", _dataContext.Scores.OrderByDescending(s => s.Total).Take(10));
+                await _hubContext.Clients.All.SendAsync("ReceiveMessage", _dataContext.Scores.OrderByDescending(s => s.Total).Take(10));
             }
             this.HttpContext.Response.StatusCode = 201;
             return score;
@@ -82,7 +82,7 @@ namespace ScoreMaster.Controllers
             await _dataContext.SaveChangesAsync();
             // only send message if the deleted score is in the top 10
             if (isInTop10){
-                await _hubContext.Clients.All.SendAsync("ReceiveDeleteMessage", _dataContext.Scores.OrderByDescending(s => s.Total).Take(10));
+                await _hubContext.Clients.All.SendAsync("ReceiveMessage", _dataContext.Scores.OrderByDescending(s => s.Total).Take(10));
             }
 
             return NoContent();
