@@ -62,7 +62,7 @@ connection.on("ReceiveAddMessage", function (id) {
     getData('api/score/top/10');
 });
 
-// upon receipt of delete message, refresh tables rows
+// upon receipt of delete message, refresh table rows
 connection.on("ReceiveDeleteMessage", function (id) {
     getData('api/score/top/10');
 });
