@@ -67,3 +67,12 @@ connection.on("ReceiveDeleteMessage", function (scores) {
         element.classList.remove('highlight-delete');
     });
 });
+
+connection.on("ReceiveDeleteAllMessage", function (scores) {
+    showTable(scores);
+    const element = document.getElementById('container');
+    element.classList.add('highlight-delete');
+    element.addEventListener('transitionend', () => {
+        element.classList.remove('highlight-delete');
+    });
+});

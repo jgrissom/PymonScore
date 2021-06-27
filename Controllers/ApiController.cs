@@ -82,9 +82,18 @@ namespace ScoreMaster.Controllers
             await _dataContext.SaveChangesAsync();
             // only send message if the deleted score is in the top 10
             if (isInTop10){
-                await _hubContext.Clients.All.SendAsync("ReceiveDeleteMessage", _dataContext.Scores.OrderByDescending(s => s.Total).Take(10));
+                await _hubContext.Clients.All.SendAsync("ReceiveDeleteAllMessage", _dataContext.Scores.OrderByDescending(s => s.Total).Take(10));
             }
 
+            return NoContent();
+        }
+
+        [HttpDelete, Route("DeleteAll"), ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<ActionResult> DeleteAll()
+        {
+            _dataContext.Scores.RemoveRange(_dataContext.Scores);
+            await _dataContext.SaveChangesAsync();
+            await _hubContext.Clients.All.SendAsync("ReceiveDeleteAllMessage", _dataContext.Scores.OrderByDescending(s => s.Total).Take(10));
             return NoContent();
         }
     }
